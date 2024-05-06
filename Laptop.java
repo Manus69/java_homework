@@ -1,17 +1,3 @@
-enum OS
-{
-    UNKNOWN,
-    WIN,
-    LINUX,
-};
-
-enum CLR
-{
-    UNKNOWN,
-    WHITE,
-    BLACK,
-};
-
 public class Laptop
 {
     OS os;
@@ -39,6 +25,9 @@ public class Laptop
 
     public String toString()
     {
-        return this.os.name() + "\n" + this.clr.name() + "\n" + String.valueOf(mem) + "\n" + String.valueOf(drive);
+        return "OS: " + this.os.name() + "\n" + 
+                "Color: " + this.clr.name() + "\n" + 
+                "Memory: " + String.valueOf(mem) + "\n" + 
+                "Drive: " + String.valueOf(drive);
     }
 }

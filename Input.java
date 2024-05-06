@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Input
 {
     private String query;
@@ -11,15 +9,15 @@ public class Input
         this.val = val;
     }
 
-    public static Input getInput()
+    public static Input getInput(String quit)
     {
         String query;
         String val;
-        Scanner scanner = new Scanner(System.in);
 
-        query = scanner.nextLine().toLowerCase();
-        val = scanner.nextLine().toLowerCase();
-        scanner.close();
+        query = System.console().readLine();
+        if (query.equals(quit)) return new Input(query, "");
+        
+        val = System.console().readLine();
 
         return new Input(query, val);
     }
