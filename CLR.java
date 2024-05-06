@@ -12,6 +12,6 @@ public enum CLR
         if (str.equals("black")) return BLACK;
         if (str.equals("unknown")) return UNKNOWN;
 
-        throw new Exception("Unknown color value");
+        throw new Exception("Unexpected color value");
     }
 }

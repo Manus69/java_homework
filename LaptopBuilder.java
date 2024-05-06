@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class LaptopBuilder
 {
     private OS _os = OS.UNKNOWN;
@@ -38,5 +40,25 @@ public class LaptopBuilder
         this._drive = drive;
 
         return this;
+    }
+
+    public static Laptop buildLaptopFromStrMap(HashMap<String, String> map, String os_key, String clr_key, String mem_key, String drive_key) throws Exception
+    {
+        LaptopBuilder builder = new LaptopBuilder();
+        String current;
+
+        current = map.get(os_key);
+        if (current != null) builder.os(OS.fromString(current));
+
+        current = map.get(clr_key);
+        if (current != null) builder.clr(CLR.fromString(current));
+
+        current = map.get(mem_key);
+        if (current != null) builder.mem(Integer.parseInt(current));
+
+        current = map.get(drive_key);
+        if (current != null) builder.drive(Integer.parseInt(current));
+
+        return builder.buildLaptop();
     }
 }

@@ -47,6 +47,20 @@ public class DB
         return _set.stream().filter(x -> x.drive >= drive).collect(Collectors.toCollection(HashSet::new));
     }
 
+    public HashSet<Laptop> find(Laptop lpt)
+    {
+        HashSet<Laptop> os_set = lpt.os == OS.UNKNOWN ? _set : this.findOS(lpt.os);
+        HashSet<Laptop> clr_set = lpt.clr == CLR.UNKNOWN ? _set : this.findCLR(lpt.clr);
+        HashSet<Laptop> mem_set = lpt.mem == 0 ? _set : this.findMem(lpt.mem);
+        HashSet<Laptop> drive_set = lpt.drive == 0 ? _set : this.findDrive(lpt.drive);
+
+        os_set.retainAll(clr_set);
+        os_set.retainAll(mem_set);
+        os_set.retainAll(drive_set);
+
+        return os_set;
+    }
+
     public void dbg()
     {
         for (Laptop lpt : _set)

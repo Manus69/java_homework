@@ -1,39 +1,57 @@
+import java.util.Arrays;
+import java.util.HashMap;
+
 public class Input
 {
-    private String query;
-    private String val;
+    private static String _invalid_str = "Invalid field name.";
+    private static String _valid_msg = "Valid names are: ";
+    private HashMap<String, String> _input;
 
-    private Input(String query, String val)
+    private Input()
     {
-        this.query = query;
-        this.val = val;
+        _input = new HashMap<String, String>();
     }
 
-    public static Input getInput(String quit)
+    public static Input getInput(String[] valid_names)
     {
-        String query;
+        String field;
         String val;
+        Input input = new Input();
 
-        query = System.console().readLine().toLowerCase();
-        if (query.equals(quit)) return new Input(query, "");
+        while (true)
+        {
+            field = System.console().readLine().toLowerCase();
+            if (field.length() == 0) break;
+            if (! Arrays.stream(valid_names).anyMatch(field::equals))
+            {
+                System.out.println(_invalid_str);
+                System.out.print(_valid_msg);
+                System.out.println(String.join(", ", valid_names));
+                continue;
+            }
 
-        val = System.console().readLine().toLowerCase();
+            val = System.console().readLine().toLowerCase();
+            input._input.put(field, val);
+        }
 
-        return new Input(query, val);
+        return input;
     }
 
-    public String getQuery()
+    public String get(String field)
     {
-        return query;
+        return _input.get(field);
     }
 
-    public String getVal()
+    public HashMap<String, String> getMap()
     {
-        return val;
+        return _input;
     }
 
-    public String toString()
+    public void dbg()
     {
-        return this.query + " " + this.val;
+        for (HashMap.Entry<String, String> entry : _input.entrySet())
+        {
+            System.out.printf("%s : %s\n", entry.getKey(), entry.getValue());
+        }
     }
 }

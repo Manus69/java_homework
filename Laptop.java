@@ -1,6 +1,6 @@
 public class Laptop
 {
-    OS os;
+    OS  os;
     CLR clr;
     int mem;
     int drive;
