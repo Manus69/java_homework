@@ -28,12 +28,27 @@ public class DB
         return db;
     }
 
-    public HashSet<Laptop> find_os(OS os)
+    public HashSet<Laptop> findOS(OS os)
     {
         return _set.stream().filter(x -> x.os == os).collect(Collectors.toCollection(HashSet::new));
     }
 
-    public void display()
+    public HashSet<Laptop> findCLR(CLR clr)
+    {
+        return _set.stream().filter(x -> x.clr == clr).collect(Collectors.toCollection(HashSet::new));
+    }
+
+    public HashSet<Laptop> findMem(int mem)
+    {
+        return _set.stream().filter(x -> x.mem >= mem).collect(Collectors.toCollection(HashSet::new));
+    }
+
+    public HashSet<Laptop> findDrive(int drive)
+    {
+        return _set.stream().filter(x -> x.drive >= drive).collect(Collectors.toCollection(HashSet::new));
+    }
+
+    public void dbg()
     {
         for (Laptop lpt : _set)
         {
