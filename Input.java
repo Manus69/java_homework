@@ -14,10 +14,10 @@ public class Input
         String query;
         String val;
 
-        query = System.console().readLine();
+        query = System.console().readLine().toLowerCase();
         if (query.equals(quit)) return new Input(query, "");
-        
-        val = System.console().readLine();
+
+        val = System.console().readLine().toLowerCase();
 
         return new Input(query, val);
     }

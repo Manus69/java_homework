@@ -8,12 +8,13 @@ public class Program
     private static String _drive = "drive";
     private static String _err_msg = "Invalid input";
     private static String _quit = "quit";
-    private static String _usage_msg = "Enter query followed by a value or '" + _quit + "' to exit.";
+    private static String _usage_msg = "Enter query followed by a value or '" + _quit + "' to exit." + 
+                                        "Valid queries: " + _os + ", " + _clr + ", " + _mem + ", " + _drive;
 
     private static void display(HashSet<Laptop> selection)
     {
         System.out.println();
-        
+
         for (Laptop lpt : selection)
         {
             System.out.println(lpt);
@@ -24,8 +25,8 @@ public class Program
     public static void main(String[] args)
     {
         Input input;
-        DB db = DB.mockDB();
         HashSet<Laptop> selection;
+        DB db = DB.mockDB();
     
         while (true)
         {
